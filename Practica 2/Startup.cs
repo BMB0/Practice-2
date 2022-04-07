@@ -1,3 +1,4 @@
+using Logic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +34,7 @@ namespace Practica_2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IUserManager, UserManager>();
             AddSwagger(services);
         }
         private void AddSwagger(IServiceCollection services)
@@ -43,7 +45,7 @@ namespace Practica_2
 
                 options.SwaggerDoc(groupName, new OpenApiInfo
                 {
-                    Title = $"Foo {groupName}",
+                    Title = $"{Configuration.GetSection("Application").GetSection("Title").Value} {groupName}",
                     Version = groupName,
                     Description = "Foo API",
                     Contact = new OpenApiContact
