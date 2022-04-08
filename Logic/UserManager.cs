@@ -21,8 +21,15 @@ namespace Logic
         }
         public User PostUser(User user)
         {
-            Users.Add(user);
-            return user;
+            if (Users.Find(x => x.Ci == user.Ci) != null)
+            {
+                return null;
+            }
+            else
+            {
+                Users.Add(user);
+                return user;
+            }
         }
         public User PutUser(User user, int ci)
         {
@@ -37,7 +44,10 @@ namespace Logic
         public User DeleteUser(User user)
         {
             var userToDelete = Users.Find(u => u.Ci == user.Ci);
-            Users.Remove(userToDelete);
+            if (userToDelete != null)
+            {
+                Users.Remove(userToDelete);
+            }
             return userToDelete;
         }
     }
