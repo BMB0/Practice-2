@@ -27,14 +27,24 @@ namespace Practica_2.Controllers
             return Ok(_userManager.PostUser(user));
         }
         [HttpPut]
-        public IActionResult PutUser()
+        public IActionResult PutUser(User user, int ci)
         {
-            return Ok();
+            User UserUpdadated = _userManager.PutUser(user, ci);
+            if(UserUpdadated != null)
+            {
+                return Ok(UserUpdadated);
+            }
+            else
+            {
+                return BadRequest("El usuario no ha sido encontrado");
+            }
+            
         }
+        
         [HttpDelete]
-        public IActionResult DeleteUser()
+        public IActionResult DeleteUser(User user)
         {
-            return Ok();
+            return Ok(_userManager.DeleteUser(user));
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Logic
     {
         public List<User> GetUsers();
         public User PostUser(User user);
-        public User PutUser(User user);
+        public User PutUser(User user, int ci);
         public User DeleteUser(User user);
 
     }

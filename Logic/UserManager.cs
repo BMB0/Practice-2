@@ -11,8 +11,8 @@ namespace Logic
         {
             Users = new List<User>
             {
-                new User() { Name = "Bruno" },
-                new User() { Name = "Andres" }
+                new User() { Name = "Bruno", Ci = 12345678 },
+                new User() { Name = "Andres", Ci = 87654321 }
             };
         }
         public List<User> GetUsers()
@@ -24,13 +24,21 @@ namespace Logic
             Users.Add(user);
             return user;
         }
-        public User PutUser(User user)
+        public User PutUser(User user, int ci)
         {
-            return null;
+            var userToUpdate = Users.Find(u => u.Ci == ci);
+            if(userToUpdate != null)
+            {
+                userToUpdate.Name = user.Name;
+                userToUpdate.Ci = user.Ci;
+            }
+            return userToUpdate;
         }
         public User DeleteUser(User user)
         {
-            return null;
+            var userToDelete = Users.Find(u => u.Ci == user.Ci);
+            Users.Remove(userToDelete);
+            return userToDelete;
         }
     }
 }
