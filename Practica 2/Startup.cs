@@ -42,15 +42,16 @@ namespace Practica_2
             services.AddSwaggerGen(options =>
             {
                 var groupName = "v1";
+                var applicationName = Configuration.GetSection("Application").GetSection("Title").Value;
 
                 options.SwaggerDoc(groupName, new OpenApiInfo
                 {
-                    Title = $"{Configuration.GetSection("Application").GetSection("Title").Value} {groupName}",
+                    Title = $"{applicationName} {groupName}",
                     Version = groupName,
-                    Description = "Foo API",
+                    Description = "Practice 2 API",
                     Contact = new OpenApiContact
                     {
-                        Name = "Foo Company",
+                        Name = "Bruno Marquez",
                         Email = string.Empty,
                         Url = new Uri("https://foo.com/"),
                     }
