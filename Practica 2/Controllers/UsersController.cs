@@ -22,9 +22,9 @@ namespace Practica_2.Controllers
             return Ok(_userManager.GetUsers());
         }
         [HttpPost]
-        public IActionResult PostUser()
+        public IActionResult PostUser(User user)
         {
-            return Ok();
+            return Ok(_userManager.PostUser(user));
         }
         [HttpPut]
         public IActionResult PutUser()
